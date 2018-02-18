@@ -6,6 +6,8 @@ export abstract class userInput{
     constructor() {
 
     }
+    
+    //function to get responses from user
     static async getUserInputAsync(question: string, defaultAnswer: string|null) {
         let answer = "";
         try {

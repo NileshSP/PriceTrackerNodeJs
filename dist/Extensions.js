@@ -46,6 +46,7 @@ var PriceTracker;
     var extensions = /** @class */ (function () {
         function extensions() {
         }
+        // common function to log messages of any type(error/normal).. can be modified for write to log files
         extensions.logMessagesAsync = function (msg, ex) { return __awaiter(_this, void 0, void 0, function () {
             var _a, _b, _c;
             return __generator(this, function (_d) {
@@ -65,7 +66,8 @@ var PriceTracker;
                 }
             });
         }); };
-        extensions.simpleSMAAsync = function (lstPrices) { return __awaiter(_this, void 0, void 0, function () {
+        // get simple moving average based on list of prices provided
+        extensions.getSMAAsync = function (lstPrices) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, lstPrices.map(function (el, index, _arr) {
                         return _arr.filter(function (x2, i2) {

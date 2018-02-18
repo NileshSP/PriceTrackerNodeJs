@@ -41,6 +41,7 @@ var extensions = extensions_1.PriceTracker.extensions;
 var userInput = /** @class */ (function () {
     function userInput() {
     }
+    //function to get responses from user
     userInput.getUserInputAsync = function (question, defaultAnswer) {
         return __awaiter(this, void 0, void 0, function () {
             var answer, query, error_1;

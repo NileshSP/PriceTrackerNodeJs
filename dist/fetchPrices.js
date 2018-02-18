@@ -46,6 +46,7 @@ var extensions = extensions_1.PriceTracker.extensions;
 var fetchPrices = /** @class */ (function () {
     function fetchPrices() {
         var _this = this;
+        // poll prices as per (user or default)defined interval
         this.pollPriceAsync = function (queryPath, pollInterval) { return __awaiter(_this, void 0, void 0, function () {
             var _this = this;
             var status_1, startPricing_1;
@@ -64,7 +65,7 @@ var fetchPrices = /** @class */ (function () {
                                     priceNow = _b.sent();
                                     this.listPrices.set(startDateTime, Number(priceNow));
                                     extensions.logMessagesAsync("\r\n" + Array.from(this.listPrices.entries()).length + ". Price at " + startDateTime + " is: " + priceNow + " ", null);
-                                    return [4 /*yield*/, extensions.simpleSMAAsync(Array.from(this.listPrices.values()))];
+                                    return [4 /*yield*/, extensions.getSMAAsync(Array.from(this.listPrices.values()))];
                                 case 2:
                                     sma = _b.sent();
                                     if (sma.find(function (s) { return s.toString().lastIndexOf("Infinity") !== -1; })) {
@@ -90,6 +91,7 @@ var fetchPrices = /** @class */ (function () {
         }); };
         this.listPrices = new Map();
     }
+    // get prices in json format from polonies API
     fetchPrices.prototype.getPriceFromAPIAsync = function (queryPath) {
         return __awaiter(this, void 0, void 0, function () {
             var returnPrice, response, priceData, error_1;

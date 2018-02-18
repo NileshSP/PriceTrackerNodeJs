@@ -34,43 +34,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var fetchPrices_1 = require("./../fetchPrices");
 var extensions_1 = require("./../extensions");
 var extensions = extensions_1.PriceTracker.extensions;
 var chai_1 = require("chai");
 require("mocha");
-var tests = /** @class */ (function () {
-    function tests() {
-        var _this = this;
-        this.test1 = function () {
-            describe('should return price from Poloniex API', function () {
-                var fhPrices = new fetchPrices_1.fetchPrices();
-                var getPrices = (function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, fhPrices.getPriceFromAPIAsync("$.BTC_ETH.last")];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                }); }); });
-                chai_1.assert.isNotNull(getPrices);
-            });
-        };
-        this.test2 = function () {
-            describe('should return simple moving average', function () {
-                var getSMA = (function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, extensions.simpleSMAAsync([0.01223, 0.011000, 0.013231])];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                }); }); });
-                chai_1.assert.isNotNull(getSMA);
-            });
-        };
-    }
-    return tests;
-}());
-exports.tests = tests;
-// let tstest = new tests();
-// tstest.test1();
-// tstest.test2();
+//test to check price return from API
+describe('should return price from Poloniex API', function () {
+    var fhPrices = new fetchPrices_1.fetchPrices();
+    var getPrices = (function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fhPrices.getPriceFromAPIAsync("$.BTC_ETH.last")];
+            case 1: return [2 /*return*/, _a.sent()];
+        }
+    }); }); });
+    chai_1.assert.isNotNull(getPrices);
+});
+// test to check retur nvalue from simple moving average function
+describe('should return simple moving average', function () {
+    var getSMA = (function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, extensions.getSMAAsync([0.01223, 0.011000, 0.013231])];
+            case 1: return [2 /*return*/, _a.sent()];
+        }
+    }); }); });
+    chai_1.expect(getSMA).is.not.null;
+});
 //# sourceMappingURL=test.js.map

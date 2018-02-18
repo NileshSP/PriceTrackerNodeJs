@@ -41,6 +41,7 @@
     "typescript": "^2.7.1"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/chai": "^4.1.2",
     "@types/chalk": "^2.2.0",
     "@types/cli-spinner": "^0.2.0",
