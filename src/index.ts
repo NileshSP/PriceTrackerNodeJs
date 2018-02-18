@@ -3,6 +3,7 @@ import { PriceTracker } from "./extensions";
 import { userInput } from "./userInput";
 import extensions = PriceTracker.extensions;
 
+//"test": "mocha -r ts-node/register src/tests/**/*.ts" 
 export class Index {
 
     private fetchPrices: fetchPrices;

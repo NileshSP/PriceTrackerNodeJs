@@ -34,40 +34,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-var Axios_1 = require("Axios");
-var jsonpath_1 = require("jsonpath");
-var Extensions_1 = require("./Extensions");
-var Extensions = Extensions_1.PriceTracker.Extensions;
-var CallAPI = /** @class */ (function () {
-    function CallAPI() {
-    }
-    CallAPI.prototype.getPriceFromAPIAsync = function (queryPath) {
-        return __awaiter(this, void 0, void 0, function () {
-            var returnPrice, response, priceData, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, 4, 5]);
-                        return [4 /*yield*/, Axios_1["default"].get(Extensions_1.PriceTracker.getUrl)];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.data];
-                    case 2:
-                        priceData = _a.sent();
-                        //Promise.resolve(priceData).then(x => console.log(x));
-                        returnPrice = jsonpath_1.query(priceData, queryPath, 1);
-                        return [3 /*break*/, 5];
-                    case 3:
-                        error_1 = _a.sent();
-                        Extensions.logMessages("", error_1);
-                        return [3 /*break*/, 5];
-                    case 4: return [2 /*return*/, returnPrice];
-                    case 5: return [2 /*return*/];
-                }
+Object.defineProperty(exports, "__esModule", { value: true });
+var fetchPrices_1 = require("./../fetchPrices");
+var extensions_1 = require("./../extensions");
+var extensions = extensions_1.PriceTracker.extensions;
+var chai_1 = require("chai");
+require("mocha");
+var tests = /** @class */ (function () {
+    function tests() {
+        var _this = this;
+        this.test1 = function () {
+            describe('should return price from Poloniex API', function () {
+                var fhPrices = new fetchPrices_1.fetchPrices();
+                var getPrices = (function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, fhPrices.getPriceFromAPIAsync("$.BTC_ETH.last")];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                }); }); });
+                chai_1.assert.isNotNull(getPrices);
             });
-        });
-    };
-    return CallAPI;
+        };
+        this.test2 = function () {
+            describe('should return simple moving average', function () {
+                var getSMA = (function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, extensions.simpleSMAAsync([0.01223, 0.011000, 0.013231])];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                }); }); });
+                chai_1.assert.isNotNull(getSMA);
+            });
+        };
+    }
+    return tests;
 }());
-exports.CallAPI = CallAPI;
+exports.tests = tests;
+// let tstest = new tests();
+// tstest.test1();
+// tstest.test2();
+//# sourceMappingURL=test.js.map

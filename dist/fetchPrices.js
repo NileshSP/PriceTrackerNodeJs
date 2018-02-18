@@ -63,7 +63,7 @@ var fetchPrices = /** @class */ (function () {
                                 case 1:
                                     priceNow = _b.sent();
                                     this.listPrices.set(startDateTime, Number(priceNow));
-                                    extensions.logMessagesAsync("\r\nPrice at " + startDateTime + " is: " + priceNow + " ", null);
+                                    extensions.logMessagesAsync("\r\n" + Array.from(this.listPrices.entries()).length + ". Price at " + startDateTime + " is: " + priceNow + " ", null);
                                     return [4 /*yield*/, extensions.simpleSMAAsync(Array.from(this.listPrices.values()))];
                                 case 2:
                                     sma = _b.sent();

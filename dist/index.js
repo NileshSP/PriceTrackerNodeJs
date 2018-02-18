@@ -38,6 +38,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fetchPrices_1 = require("./fetchPrices");
 var extensions_1 = require("./extensions");
 var userInput_1 = require("./userInput");
+//"test": "mocha -r ts-node/register src/tests/**/*.ts" 
 var Index = /** @class */ (function () {
     //Initialize & define defaults for required values
     function Index() {

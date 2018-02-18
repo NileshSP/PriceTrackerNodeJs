@@ -20,7 +20,7 @@ export class fetchPrices {
                 let startDateTime = new Date();
                 let priceNow = await this.getPriceFromAPIAsync(queryPath);
                 this.listPrices.set(startDateTime, Number(priceNow));
-                extensions.logMessagesAsync(`\r\nPrice at ${startDateTime} is: ${priceNow} `, null);
+                extensions.logMessagesAsync(`\r\n${Array.from(this.listPrices.entries()).length}. Price at ${startDateTime} is: ${priceNow} `, null);
                 let sma = await extensions.simpleSMAAsync(Array.from(this.listPrices.values()));
                 if(sma.find(s => s.toString().lastIndexOf(`Infinity`) !== -1))
                 {
